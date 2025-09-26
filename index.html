@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Paracetamol Info</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+    img { width: 200px; margin-bottom: 20px; }
+    button { 
+      margin: 10px; 
+      padding: 10px 20px; 
+      font-size: 16px; 
+      cursor: pointer; 
+      border-radius: 8px;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    #stopBtn {
+      background-color: #e74c3c;
+    }
+    #stopBtn:hover {
+      background-color: #c0392b;
+    }
+  </style>
+</head>
+<body>
+  <h2>Paracetamol Tablet</h2>
+  <img src="paracetamol.jpg" alt="Paracetamol Tablet">
+  <p><strong>Select one language:</strong></p>
+  
+  <button onclick="playVoice('en')">English</button>
+  <button onclick="playVoice('hi')">Hindi</button>
+  <button onclick="playVoice('mr')">Marathi</button>
+  <br>
+  <button id="stopBtn" onclick="stopVoice()">Stop Voice</button>
+
+  <script>
+    function playVoice(lang) {
+      // Stop any current speech before starting new
+      window.speechSynthesis.cancel();
+
+      let msg = new SpeechSynthesisUtterance();
+      
+      if (lang === 'en') {
+        msg.text = "Paracetamol is used to reduce fever and relieve mild to moderate pain. It should be taken only with a doctor's prescription. Suitable for adults and children above 6 years, under medical advice.";
+        msg.lang = "en-IN";
+      } else if (lang === 'hi') {
+        msg.text = "पैरासिटामोल बुखार कम करने और हल्के से मध्यम दर्द से राहत देने के लिए उपयोग किया जाता है। इसे केवल डॉक्टर की सलाह से ही लेना चाहिए। यह दवा 6 वर्ष से ऊपर के बच्चों और वयस्कों के लिए डॉक्टर की सलाह पर उपयुक्त है।";
+        msg.lang = "hi-IN";
+      } else if (lang === 'mr') {
+        msg.text = "पॅरासिटामोल ताप कमी करण्यासाठी आणि हलका ते मध्यम वेदना कमी करण्यासाठी वापरला जातो. तो फक्त डॉक्टरांच्या सल्ल्याने घ्यावा. हा औषध 6 वर्षांवरील मुलांना आणि प्रौढांना डॉक्टरांच्या सल्ल्याने योग्य आहे.";
+        msg.lang = "mr-IN";
+      }
+
+      window.speechSynthesis.speak(msg);
+    }
+
+    function stopVoice() {
+      window.speechSynthesis.cancel();
+    }
+  </script>
+</body>
+</html>
